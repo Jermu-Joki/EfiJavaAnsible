@@ -12,4 +12,5 @@ sudo apt-get -y install default-jdk
 sudo git clone https://github.com/Jermu-Joki/EfiJavaAnsible.git
 sudo cp -f ./EfiJavaAnsible/tomcat-users.xml /etc/tomcat7/tomcat-users.xml
 sudo service tomcat7 restart
+sudo chmod u+rw /usr/share/tomcat7-root/default_root
 echo All Done!
