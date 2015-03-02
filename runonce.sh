@@ -1,19 +1,15 @@
-sudo apt-add-repository ppa:ansible/ansible
 sudo apt-get update -y
 sudo apt-get install -y default-jre
 sudo apt-get install -y git
 sudo apt-get install -y software-properties-common
-sudo apt-get install virtualbox-dkms
-sudo apt-get install linux-headers-generic
-sudo dpkg-reconfigure virtualbox-dkms
-sudo apt-get install -y ansible
-sudo apt-get install -y virtualbox
-sudo dpkg-reconfigure virtualbox
-sudo wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
-sudo dpkg --install vagrant_1.7.2_x86_64.deb
-sudo apt-get install virtualbox-source module-assistant
-sudo m-a prepare
-sudo m-a a-i virtualbox-source
-sudo cd ../../vagrant/AnsibleVM
-sudo vagrant up
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password temp'
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password temp'
+sudo apt-get -y install mysql-server
+sudo mysql -uroot -ptemp -e "SET PASSWORD = PASSWORD('');"
+sudo apt-get -y install tomcat7
+sudo apt-get -y install tomcat7-docs tomcat7-admin tomcat7-examples
+sudo apt-get -y install default-jdk
+sudo git clone https://github.com/Jermu-Joki/EfiJavaAnsible.git
+sudo cp -f ./EfiJavaAnsible/tomcat-users.xml /etc/tomcat7/tomcat-users.xml
+sudo service tomcat7 restart
 echo All Done!
